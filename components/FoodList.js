@@ -14,7 +14,7 @@ const FoodList = ({ item, complete, removeItem, decreaseAmount, increaseAmount }
         <Text style={{fontWeight: 'bold'}}>{item.amount.toString()}</Text>
       </View>
       <View style={styles.titleContainer}>
-        <Text numberOfLines={1} style={[styles.title, item.completed == true ? styles.completedTitle : null]}>{item.title}</Text>
+        <Text numberOfLines={2} style={[styles.title, item.completed == true ? styles.completedTitle : null]}>{item.title}</Text>
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
