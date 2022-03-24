@@ -11,7 +11,6 @@ export default function App() {
   const [modalActive, setModalActive] = useState(false)
   const [deleteItem, setDeleteItem] = useState(false)
   const [selectedItem, setSelectedItem] = useState(null)
-  const [forceHideModal, setForceHideModal] = useState(false)
 
   useEffect(() => {
     if (deleteItem) {
@@ -30,32 +29,44 @@ export default function App() {
     }
   }
 
-  const completeFoodList = (index) => {
+  const completeFoodList = (id) => {
+    const item = data.filter(item => item.id == id)[0]
+    const index = data.indexOf(item)
     data[index].completed = !data[index].completed
     setData([...data])
   }
 
-  const removeItemFromList = (index) => {
-    setSelectedItem(data[index])
+  const removeItemFromList = (id) => {
+    setSelectedItem(data.filter(item => item.id == id)[0])
     setModalActive(true)
   }
 
-  const decreaseAmount = (index) => {
+  const decreaseAmount = (id) => {
+    const item = data.filter(item => item.id == id)[0]
+    const index = data.indexOf(item)
     if (data[index].amount > 1) {
       data[index].amount -= 1
     }
     setData([...data])
   }
 
-  const increaseAmount = (index) => {
+  const increaseAmount = (id) => {
+    const item = data.filter(item => item.id == id)[0]
+    const index = data.indexOf(item)
     data[index].amount += 1
     setData([...data])
   }
 
-  const renderItem = (item, index) => {
+  const renderItem = (item) => {
     return (
       <View style={{padding: 15}}>
-        <FoodList item={item} index={index} complete={completeFoodList} removeItem={removeItemFromList} decreaseAmount={decreaseAmount} increaseAmount={increaseAmount}/>
+        <FoodList
+          item={item}
+          complete={completeFoodList}
+          removeItem={removeItemFromList}
+          decreaseAmount={decreaseAmount}
+          increaseAmount={increaseAmount}
+        />
       </View>
     )
   }
@@ -63,7 +74,12 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="default"/>
-      <CustomModal modalActive={modalActive} selectedItem={selectedItem} closeModal={() => setModalActive(!modalActive)} deleteItem={() => setDeleteItem(!deleteItem)} />
+      <CustomModal
+        modalActive={modalActive}
+        selectedItem={selectedItem}
+        closeModal={() => setModalActive(!modalActive)}
+        deleteItem={() => setDeleteItem(!deleteItem)}
+      />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Lista de Compras</Text>
       </View>
@@ -71,7 +87,7 @@ export default function App() {
       <FlatList
         data={data}
         keyExtractor={item => `${item.id}`}
-        renderItem={({item, index}) => renderItem(item, index)}
+        renderItem={({item}) => renderItem(item)}
         showsVerticalScrollIndicator={false}
         ListFooterComponent={
           <View style={{marginBottom: 130}}/>

@@ -2,13 +2,12 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { AntDesign } from '@expo/vector-icons'
 import { Entypo } from '@expo/vector-icons'
-import { MaterialIcons } from '@expo/vector-icons'
 import React from 'react'
 
-const FoodList = ({ item, index, complete, removeItem, decreaseAmount, increaseAmount }) => {
+const FoodList = ({ item, complete, removeItem, decreaseAmount, increaseAmount }) => {
   return (
     <TouchableOpacity
-      onPress={() => removeItem(index)}
+      onPress={() => removeItem(item.id)}
       style={styles.container}
     >
       <View style={styles.amountContainer}>
@@ -19,17 +18,17 @@ const FoodList = ({ item, index, complete, removeItem, decreaseAmount, increaseA
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
-          onPress={() => decreaseAmount(index)}
+          onPress={() => decreaseAmount(item.id)}
         >
           <AntDesign name="minuscircleo" size={24} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => increaseAmount(index)}
+          onPress={() => increaseAmount(item.id)}
         >
           <AntDesign name="pluscircleo" size={24} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => complete(index)}
+          onPress={() => complete(item.id)}
         >
           <View>
             {

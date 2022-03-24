@@ -1,8 +1,8 @@
-import { Modal, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Modal, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { AntDesign } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
-import { useState } from 'react'
 
 const CustomModal = ({ modalActive, selectedItem, closeModal, deleteItem }) => {
 
@@ -17,6 +17,9 @@ const CustomModal = ({ modalActive, selectedItem, closeModal, deleteItem }) => {
       >
         <SafeAreaView style={styles.modalContainer}>
           <View style={styles.modalContent}>
+            <View style={styles.exclamationContainer}>
+              <Ionicons name="alert" size={24} color="white" />
+            </View>
             <View style={styles.closeButtonContainer}>
               <TouchableOpacity
                 onPress={closeModal}
@@ -26,7 +29,7 @@ const CustomModal = ({ modalActive, selectedItem, closeModal, deleteItem }) => {
             </View>
             <View style={styles.modalTextContainer}>
               <Text style={{fontSize: 25, fontWeight: 'bold'}}>
-                Estas a punto de borrar {selectedItem?.amount} {selectedItem?.title} de tu lista de compras
+                Borrar {selectedItem?.amount} {selectedItem?.title} de tu lista de compras
               </Text>
             </View>
             <TouchableOpacity
@@ -36,7 +39,7 @@ const CustomModal = ({ modalActive, selectedItem, closeModal, deleteItem }) => {
                 closeModal()
               }}
             >
-              <Text style={{fontSize: 18, fontWeight: 'bold'}}>CONFIRMAR</Text>
+              <Text style={{fontSize: 18, fontWeight: 'bold', color: '#fff'}}>CONFIRMAR</Text>
             </TouchableOpacity>
           </View>
         </SafeAreaView>
@@ -50,15 +53,29 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     backgroundColor: '#000000AA',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   modalContent: {
     backgroundColor: '#E4E3E8',
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
+    borderRadius: 15,
     height: '50%',
+    width: '80%',
     padding: 10,
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  exclamationContainer: {
+    width: 70,
+    height: 70,
+    borderRadius: 40,
+    backgroundColor: '#B2104F',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: -35,
+    borderWidth: 2,
+    borderColor: '#E4E3E8',
   },
   closeButtonContainer: {
     justifyContent: 'flex-end',
@@ -74,7 +91,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   confirmButton: {
-    backgroundColor: 'lightgray',
+    backgroundColor: '#B2104F',
     alignItems: 'center',
     justifyContent: 'center',
     width: '70%',
