@@ -29,7 +29,10 @@ const CustomModal = ({ modalActive, selectedItem, closeModal, deleteItem }) => {
             </View>
             <View style={styles.modalTextContainer}>
               <Text style={{fontSize: 25, fontWeight: 'bold'}}>
-                Borrar {selectedItem?.amount} {selectedItem?.title} de tu lista de compras
+                Estas seguro?
+              </Text>
+              <Text style={{color: 'gray', fontWeight: 'bold'}}>
+                De verdad queres borrar {selectedItem?.amount} {selectedItem?.title}? Esta operacion no se puede deshacer
               </Text>
             </View>
             <TouchableOpacity
@@ -59,11 +62,11 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: '#E4E3E8',
     borderRadius: 15,
-    height: '50%',
+    height: '45%',
     width: '80%',
     padding: 10,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
   exclamationContainer: {
     width: 70,
@@ -84,10 +87,10 @@ const styles = StyleSheet.create({
   },
   modalTextContainer: {
     width: '100%',
-    height: '40%',
-    //backgroundColor: 'lightblue',
+    height: '50%',
+    //backgroundColor: 'blue',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     marginTop: 20,
   },
   confirmButton: {
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '70%',
     height: '20%',
-    borderRadius: 15,
+    borderRadius: 10,
     marginBottom: 20,
   },
 })
