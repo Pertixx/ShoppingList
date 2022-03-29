@@ -11,9 +11,7 @@ const CustomModal = ({ modalActive, selectedItem, closeModal, deleteItem }) => {
         visible={modalActive}
         transparent={true}
         animationType='fade'
-        onRequestClose={() => {
-          setModalActive(!modalActive)
-        }}
+        onRequestClose={closeModal}
       >
         <SafeAreaView style={styles.modalContainer}>
           <View style={styles.modalContent}>
